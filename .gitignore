@@ -1,9 +1,10 @@
-﻿
-
-# compiled output
+﻿# compiled output
 /dist
 /tmp
 /out-tsc
+/wwwroot
+/bin
+/obj
 
 # dependencies
 /node_modules
