@@ -3,6 +3,8 @@
 /tmp
 /out-tsc
 /wwwroot
+/bin
+/obj
 
 # dependencies
 /node_modules
