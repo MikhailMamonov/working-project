@@ -5,6 +5,7 @@
 /wwwroot
 /bin
 /obj
+/.vs
 
 # dependencies
 /node_modules
