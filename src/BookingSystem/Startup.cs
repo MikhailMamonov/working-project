@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Swashbuckle.AspNetCore.Swagger;
+using Serilog.Events;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace BookingSystem
 {
     public class Startup
     {
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
