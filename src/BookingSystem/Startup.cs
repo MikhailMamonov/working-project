@@ -26,9 +26,8 @@ namespace BookingSystem
                 {
                     Version = "v1",
                     Title = "MeetingBook",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = "None",
-                    Contact = new Contact { Name = "Alex Kozlov", Email = "alexandr.kozlov@akvelon.com" }
+                    Description = "Application for organizing meeting",
+                    TermsOfService = "None"
                 });
             });
         }
