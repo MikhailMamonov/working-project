@@ -6,6 +6,7 @@
 /bin
 /obj
 /.vs
+/logs
 
 # dependencies
 /node_modules
