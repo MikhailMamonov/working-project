@@ -17,8 +17,9 @@ namespace BookingSystem
         public Startup()
         {
             Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.File(@"logs\log" + DateTime.Today.ToString("yy-MM-dd") + ".txt")
+                .MinimumLevel.Debug()
+                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "logs", "log-{Date}.log"), retainedFileCountLimit: 90)
+                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "logs", "log-error-{Date}.log"), LogEventLevel.Error, retainedFileCountLimit: 90)
                 .CreateLogger();
         }
 
@@ -33,9 +34,6 @@ namespace BookingSystem
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
             loggerFactory.AddSerilog();
-      
-            // Ensure any buffered events are sent at shutdown
-            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
 
             if (env.IsDevelopment())
             {
