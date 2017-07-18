@@ -18,7 +18,7 @@ namespace BookingSystem
         {
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
-                .WriteTo.File(@"log" + DateTime.Today.ToString("yy-MM-dd") + ".txt")
+                .WriteTo.File(@"logs\log" + DateTime.Today.ToString("yy-MM-dd") + ".txt")
                 .CreateLogger();
         }
 
