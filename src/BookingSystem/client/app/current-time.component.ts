@@ -14,5 +14,9 @@ import 'rxjs/add/operator/map';
   ],
 })
 export class CurrentTimeComponent implements OnInit {
+  now = Observable
+    .interval(1000)
+    .map(val => new Date());
+
   ngOnInit() { }
 }
