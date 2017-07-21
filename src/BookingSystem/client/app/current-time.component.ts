@@ -14,9 +14,11 @@ import 'rxjs/add/operator/map';
   ],
 })
 export class CurrentTimeComponent implements OnInit {
+  private readonly _tickPeriod = 1000 * 1; // 1s
+
   now = Observable
-    .interval(1000)
-    .map(val => new Date());
+    .interval(this._tickPeriod)
+    .map(() => new Date());
 
   ngOnInit() { }
 }
