@@ -6,11 +6,10 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header.component';
-import { FooterComponent } from './footer.component';
 import { InfoPageComponent } from './info-page.component';
-import { RoomNameComponent } from './room-name.component';
 import { CurrentTimeComponent } from './current-time.component';
+import { RoomInfoComponent } from './room-info.component';
+import { RoomNameComponent } from './room-name.component';
 import { RoomStatusComponent } from './room-status.component';
 import { NextMeetingInfoComponent } from './next-meeting-info.component';
 
@@ -30,11 +29,10 @@ import { InMemoryMeetingRoomsService } from './in-memory-meeting-rooms.service';
 
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     InfoPageComponent,
-    RoomNameComponent,
     CurrentTimeComponent,
+    RoomInfoComponent,
+    RoomNameComponent,
     RoomStatusComponent,
     NextMeetingInfoComponent,
   ],

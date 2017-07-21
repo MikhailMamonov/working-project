@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { MeetingRoom } from './meeting-room';
 
 @Component({
   selector: 'bs-next-meeting-info',
@@ -10,5 +12,7 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class NextMeetingInfoComponent implements OnInit {
+  @Input() room: MeetingRoom;
+
   ngOnInit() { }
 }

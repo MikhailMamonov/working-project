@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+
+import { MeetingRoom } from './meeting-room';
+
 import { BookingSystemService } from './booking-system.service';
 
 @Component({
@@ -16,9 +20,18 @@ import { BookingSystemService } from './booking-system.service';
   ],
 })
 export class InfoPageComponent implements OnInit {
+  meetingRooms: Observable<MeetingRoom[]>;
+
   constructor(
     private _bookingSystemService: BookingSystemService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.meetingRooms = this._bookingSystemService.getRooms()
+      .map(meetingRooms => {
+        console.log('InfoPageComponent#ngOnInit', meetingRooms);
+
+        return meetingRooms;
+      });
+  }
 }

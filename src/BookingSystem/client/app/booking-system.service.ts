@@ -14,7 +14,7 @@ export class BookingSystemService {
 
   private _meetingRoomsSubj: Subject<MeetingRoom[]>;
 
-  private readonly _initialUpdateDelay = 1000 * 1; // 1s
+  private readonly _initialUpdateDelay = 1000 * 3; // 1s
   private readonly _updatePeriod = 1000 * 20; // 20s
   private _updateTimerObs: Observable<number>;
 
@@ -29,7 +29,7 @@ export class BookingSystemService {
   }
 
   _fetchData(): void {
-    console.log('_fetchData()');
+    console.log('BookingSystemService#_fetchData');
 
     // this._http
     //   .get(`${this._apiUrl}/room`)
@@ -37,12 +37,16 @@ export class BookingSystemService {
 
     this._http
       .get(`${this._apiUrl}/room`)
-      .map(resp => resp.json().data as MeetingRoom[])
+      .map(resp => {
+        console.log(resp.json());
+
+        return resp.json().data as MeetingRoom[];
+      })
       .subscribe(meetingRooms => this._setRooms(meetingRooms));
   }
 
   private _setRooms(meetingRooms: MeetingRoom[]): void {
-    console.log(meetingRooms);
+    console.log('BookingSystemService#setRooms', meetingRooms);
 
     this._data.meetingRooms = meetingRooms;
     this._meetingRoomsSubj.next(this._data.meetingRooms);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bs-room-name',
@@ -10,5 +10,7 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class RoomNameComponent implements OnInit {
+  @Input() roomName: string;
+
   ngOnInit() { }
 }

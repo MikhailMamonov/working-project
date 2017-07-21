@@ -3,15 +3,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MeetingRoom } from './meeting-room';
 
 @Component({
-  selector: 'bs-room-status',
+  selector: 'bs-room-info',
 
-  templateUrl: './room-status.component.html',
+  templateUrl: './room-info.component.html',
 
   styleUrls: [
-    './room-status.component.css',
+    './room-info.component.css',
   ],
 })
-export class RoomStatusComponent implements OnInit {
+export class RoomInfoComponent implements OnInit {
   @Input() room: MeetingRoom;
 
   ngOnInit() { }
