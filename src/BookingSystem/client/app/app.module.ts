@@ -4,14 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
 import { InfoPageComponent } from './info-page.component';
-import { RoomTitleComponent } from './room-title.component';
+import { RoomNameComponent } from './room-name.component';
 import { CurrentTimeComponent } from './current-time.component';
 import { RoomStatusComponent } from './room-status.component';
 import { NextMeetingInfoComponent } from './next-meeting-info.component';
+
+import { BookingSystemService } from './booking-system.service';
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryMeetingRoomsService } from './in-memory-meeting-rooms.service';
 
 @NgModule({
   imports: [
@@ -19,6 +25,7 @@ import { NextMeetingInfoComponent } from './next-meeting-info.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    InMemoryWebApiModule.forRoot(InMemoryMeetingRoomsService),
   ],
 
   declarations: [
@@ -26,15 +33,18 @@ import { NextMeetingInfoComponent } from './next-meeting-info.component';
     HeaderComponent,
     FooterComponent,
     InfoPageComponent,
-    RoomTitleComponent,
+    RoomNameComponent,
     CurrentTimeComponent,
     RoomStatusComponent,
     NextMeetingInfoComponent,
   ],
 
-  providers: [],
+  providers: [
+    BookingSystemService,
+  ],
 
-  bootstrap: [ AppComponent ],
+  bootstrap: [
+    AppComponent,
+  ],
 })
-export class AppModule {
-}
+export class AppModule { }
