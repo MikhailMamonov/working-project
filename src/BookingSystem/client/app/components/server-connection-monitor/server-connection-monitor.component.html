@@ -1,0 +1,11 @@
+<ng-container *ngIf="responseStatusObs | async as status; else loading">
+  <ng-container *ngIf="!status.isSuccess()">
+    <p>Error {{status.status}}: {{status.statusText}}</p>
+
+    <p>Retrying in {{countdownTimerObs | async | date: 'mm:ss'}}...</p>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  Getting connection status...
+</ng-template>
