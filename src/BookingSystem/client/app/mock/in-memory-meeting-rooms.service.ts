@@ -4,8 +4,8 @@ import { MOCK_MEETING_ROOMS } from './mock-meeting-rooms';
 
 export class InMemoryMeetingRoomsService implements InMemoryDbService {
   createDb(): any {
-    const room = MOCK_MEETING_ROOMS;
+    const rooms = MOCK_MEETING_ROOMS;
 
-    return { room };
+    return { rooms };
   }
 }

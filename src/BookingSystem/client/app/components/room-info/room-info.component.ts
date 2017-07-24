@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MeetingRoom } from '../../shared/meeting-room';
+import { MeetingRoom } from '../../types/meeting-room';
 
 @Component({
   selector: 'bs-room-info',
