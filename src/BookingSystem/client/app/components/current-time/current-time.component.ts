@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
+import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -14,11 +14,15 @@ import 'rxjs/add/operator/map';
   ],
 })
 export class CurrentTimeComponent implements OnInit {
-  private readonly _tickPeriod = 1000 * 1; // 1s
+  private readonly _tickPeriod = 1000 * 1; // 1s // TODO: [1;0] Move to config
 
-  now = Observable
-    .interval(this._tickPeriod)
-    .map(() => new Date());
+  nowObs = Observable
+    .timer(0, this._tickPeriod)
+    .map(
+      () => {
+        return new Date();
+      },
+    );
 
   ngOnInit() { }
 }
