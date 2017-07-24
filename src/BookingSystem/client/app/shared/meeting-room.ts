@@ -1,7 +1,4 @@
-export class Meeting {
-  startTime: string;
-  duration: string;
-}
+import { Meeting } from './meeting';
 
 export class MeetingRoom {
   id: string;

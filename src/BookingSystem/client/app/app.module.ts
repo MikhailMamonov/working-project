@@ -6,17 +6,17 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { InfoPageComponent } from './info-page.component';
-import { CurrentTimeComponent } from './current-time.component';
-import { RoomInfoComponent } from './room-info.component';
-import { RoomNameComponent } from './room-name.component';
-import { RoomStatusComponent } from './room-status.component';
-import { NextMeetingInfoComponent } from './next-meeting-info.component';
+import { InfoPageComponent } from './components/info-page/info-page.component';
+import { CurrentTimeComponent } from './components/current-time/current-time.component';
+import { RoomInfoComponent } from './components/room-info/room-info.component';
+import { RoomNameComponent } from './components/room-name/room-name.component';
+import { RoomStatusComponent } from './components/room-status/room-status.component';
+import { NextMeetingInfoComponent } from './components/next-meeting-info/next-meeting-info.component';
 
-import { BookingSystemService } from './booking-system.service';
+import { BookingSystemService } from './services/booking-system.service';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryMeetingRoomsService } from './in-memory-meeting-rooms.service';
+import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.service';
 
 @NgModule({
   imports: [

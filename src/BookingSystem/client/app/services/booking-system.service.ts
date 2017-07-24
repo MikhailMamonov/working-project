@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/timer';
 
-import { MeetingRoom } from './meeting-room';
+import { MeetingRoom } from '../shared/meeting-room';
 
 @Injectable()
 export class BookingSystemService {

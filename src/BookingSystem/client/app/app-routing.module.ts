@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InfoPageComponent } from './info-page.component';
+import { InfoPageComponent } from './components/info-page/info-page.component';
 
 const APP_ROUTES: Routes = [
   { path: 'info', component: InfoPageComponent },

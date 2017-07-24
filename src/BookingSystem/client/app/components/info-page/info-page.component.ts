@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { MeetingRoom } from './meeting-room';
+import { MeetingRoom } from '../../shared/meeting-room';
 
-import { BookingSystemService } from './booking-system.service';
+import { BookingSystemService } from '../../services/booking-system.service';
 
 @Component({
   selector: 'bs-info-page',
