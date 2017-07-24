@@ -1,3 +1,5 @@
-<ng-container>
-  (NEXT MEETING INFO FOR ROOM {{room.id}} HERE)
+<ng-container *ngIf="hasNextMeeting()">
+  <p>Next:</p>
+  <p>{{room.nextMeeting().user}}</p>
+  <p>{{room.nextMeeting().description}}</p>
 </ng-container>

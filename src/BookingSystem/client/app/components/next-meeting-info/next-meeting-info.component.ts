@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MeetingRoom } from '../../shared/meeting-room';
+import { MeetingRoom } from '../../types/meeting-room';
+import { Meeting } from '../../types/meeting';
 
 @Component({
   selector: 'bs-next-meeting-info',
