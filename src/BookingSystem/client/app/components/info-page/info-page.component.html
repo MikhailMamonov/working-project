@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div class="bg-success" *ngFor="let room of (meetingRooms | async)">
+  <div class="bg-success" *ngFor="let room of (meetingRoomsObs | async)">
     <bs-room-info [room]="room"></bs-room-info>
   </div>
 
