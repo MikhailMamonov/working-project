@@ -14,10 +14,6 @@ import { BookingSystemService } from './booking-system.service';
   styleUrls: [
     './info-page.component.css',
   ],
-
-  providers: [
-    BookingSystemService,
-  ],
 })
 export class InfoPageComponent implements OnInit {
   meetingRooms: Observable<MeetingRoom[]>;
