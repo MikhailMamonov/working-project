@@ -5,8 +5,12 @@
     </div>
   </div>
 
-  <div class="bg-success" *ngFor="let room of (meetingRoomsObs | async)">
-    <bs-room-info [room]="room"></bs-room-info>
+  <div *ngFor="let room of (meetingRoomsObs | async)"
+       class="row">
+    <div bsRoomInfoColorize [room]="room"
+         class="col">
+      <bs-room-info [room]="room"></bs-room-info>
+    </div>
   </div>
 
   <div class="row justify-content-center">
