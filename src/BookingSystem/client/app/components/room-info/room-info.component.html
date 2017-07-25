@@ -11,9 +11,10 @@
     </div>
   </div>
 
-  <div *ngIf="hasNextMeeting(room)" class="row">
+  <div *ngIf="hasNextMeeting(room)"
+       class="row">
     <div class="col">
-      <p>Next:</p>
+      <p class="text-uppercase">Next</p>
 
       <bs-meeting-info [meeting]="nextMeeting(room)"></bs-meeting-info>
     </div>
