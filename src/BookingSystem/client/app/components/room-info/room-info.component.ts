@@ -14,5 +14,8 @@ import { MeetingRoom } from '../../types/meeting-room';
 export class RoomInfoComponent implements OnInit {
   @Input() room: MeetingRoom;
 
+  hasNextMeeting = MeetingRoom.hasNextMeeting;
+  nextMeeting = MeetingRoom.nextMeeting;
+
   ngOnInit() { }
 }

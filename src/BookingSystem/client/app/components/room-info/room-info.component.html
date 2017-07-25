@@ -11,9 +11,11 @@
     </div>
   </div>
 
-  <div class="row">
+  <div *ngIf="hasNextMeeting(room)" class="row">
     <div class="col">
-      <bs-next-meeting-info [room]="room"></bs-next-meeting-info>
+      <p>Next:</p>
+
+      <bs-meeting-info [meeting]="nextMeeting(room)"></bs-meeting-info>
     </div>
   </div>
 </ng-container>

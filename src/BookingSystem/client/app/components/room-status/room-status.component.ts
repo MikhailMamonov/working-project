@@ -16,11 +16,11 @@ export class RoomStatusComponent implements OnInit {
 
   isOccupiedNow = MeetingRoom.isOccupiedNow;
   hasNextMeeting = MeetingRoom.hasNextMeeting;
-  nextMeeting = MeetingRoom.nextMeeting;
+  currentMeeting = MeetingRoom.currentMeeting;
 
   ngOnInit() { }
 
-  status(): string {
+  roomStatusText(): string {
     if (this.isOccupiedNow(this.room)) {
       return 'Occupied';
     } else {

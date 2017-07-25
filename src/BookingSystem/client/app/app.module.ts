@@ -11,7 +11,7 @@ import { CurrentTimeComponent } from './components/current-time/current-time.com
 import { RoomInfoComponent } from './components/room-info/room-info.component';
 import { RoomNameComponent } from './components/room-name/room-name.component';
 import { RoomStatusComponent } from './components/room-status/room-status.component';
-import { NextMeetingInfoComponent } from './components/next-meeting-info/next-meeting-info.component';
+import { MeetingInfoComponent } from './components/meeting-info/meeting-info.component';
 import { ServerConnectionMonitorComponent } from './components/server-connection-monitor/server-connection-monitor.component';
 
 import { BookingSystemService } from './services/booking-system.service';
@@ -35,7 +35,7 @@ import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.serv
     RoomInfoComponent,
     RoomNameComponent,
     RoomStatusComponent,
-    NextMeetingInfoComponent,
+    MeetingInfoComponent,
     ServerConnectionMonitorComponent,
   ],
 
