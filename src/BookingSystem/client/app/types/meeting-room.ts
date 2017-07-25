@@ -60,12 +60,12 @@ export class MeetingRoom {
       if (currentMeeting) {
         // Return first meeting after current (or undefined):
         return room.meetings.find(meeting => {
-          return Meeting.endTime(currentMeeting).isBefore(Meeting.startTime(meeting));
+          return Meeting.endTime(currentMeeting).isSameOrBefore(Meeting.startTime(meeting));
         });
       } else {
         // Return first meeting with start time greater than now (or undefined):
         return room.meetings.find(meeting => {
-          return now.isBefore(Meeting.startTime(meeting));
+          return now.isSameOrBefore(Meeting.startTime(meeting));
         });
       }
     } else {

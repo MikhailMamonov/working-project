@@ -18,7 +18,7 @@ export class Meeting {
     const startTime = Meeting.startTime(meeting);
     const endTime = Meeting.endTime(meeting);
 
-    return dateTime.isAfter(startTime) && dateTime.isBefore(endTime);
+    return dateTime.isBetween(startTime, endTime, null, '[]');
   }
 
   static startTime(meeting: Meeting): Moment {
