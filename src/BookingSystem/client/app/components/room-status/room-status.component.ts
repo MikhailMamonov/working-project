@@ -14,11 +14,14 @@ import { MeetingRoom } from '../../types/meeting-room';
 export class RoomStatusComponent implements OnInit {
   @Input() room: MeetingRoom;
 
+  isOccupiedNow = MeetingRoom.isOccupiedNow;
+  hasNextMeeting = MeetingRoom.hasNextMeeting;
+  nextMeeting = MeetingRoom.nextMeeting;
+
   ngOnInit() { }
 
-  // TODO: [1;0] Move this to `MeetingRoom' class.
   status(): string {
-    if (this.room.isOccupiedNow()) {
+    if (this.isOccupiedNow(this.room)) {
       return 'Occupied';
     } else {
       return 'Available';

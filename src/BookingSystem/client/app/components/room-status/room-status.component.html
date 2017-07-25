@@ -1,4 +1,13 @@
 <ng-container>
   <p>{{status()}}</p>
-  <p *ngIf="room.isOccupiedNow()">(REMAINING TIME HERE)</p>
+
+  <p *ngIf="isOccupiedNow(room) as isOccupiedNow; else notIsOccupiedNow">
+    (REMAINING TIME HERE)
+  </p>
+
+  <ng-template #notIsOccupiedNow>
+    <p *ngIf="hasNextMeeting(room) as hasNextMeeting; else notHasNextMeeting">
+      (NEXT MEETING START TIME HERE)
+    </p>
+  </ng-template>
 </ng-container>

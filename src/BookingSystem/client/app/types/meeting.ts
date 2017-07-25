@@ -1,21 +1,31 @@
 import * as moment from 'moment';
+import { Moment } from 'moment';
 
 export class Meeting {
   startTime: string;
-
   duration: string;
 
   user: string;
-
   description: string;
 
-  isHappeningNow(): boolean {
+  static isHappeningNow(meeting: Meeting): boolean {
     const now = moment();
-    const startTime = moment(this.startTime, moment.ISO_8601);
-    const endTime = startTime.add(moment(this.duration, moment.ISO_8601));
 
-    console.log(now, startTime, endTime);
+    return Meeting.isHappeningAt(meeting, now);
+  }
 
-    return false;
+  static isHappeningAt(meeting: Meeting, dateTime: Moment): boolean {
+    const startTime = Meeting.startTime(meeting);
+    const endTime = Meeting.endTime(meeting);
+
+    return dateTime.isAfter(startTime) && dateTime.isBefore(endTime);
+  }
+
+  static startTime(meeting: Meeting): Moment {
+    return moment(meeting.startTime, moment.ISO_8601);
+  }
+
+  static endTime(meeting: Meeting): Moment {
+    return moment(meeting.startTime).add(moment.duration(meeting.duration));
   }
 }
