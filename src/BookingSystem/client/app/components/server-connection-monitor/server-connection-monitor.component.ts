@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/operator/startWith';
 
 import { ResponseStatus } from '../../types/response-status';
 import { BookingSystemService } from '../../services/booking-system.service';
@@ -30,7 +31,8 @@ export class ServerConnectionMonitorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.responseStatusObs = this._bookingSystemService.getResponseStatus();
+    this.responseStatusObs = this._bookingSystemService.getResponseStatus()
+      .startWith(new ResponseStatus(202, 'OK'));
 
     this.nowObs = Observable
       .timer(this._bookingSystemService.initialUpdateDelay, this._tickPeriod)
@@ -38,7 +40,8 @@ export class ServerConnectionMonitorComponent implements OnInit {
         () => {
           return new Date();
         },
-      );
+      )
+      .startWith(new Date());
 
     this.countdownTimerObs = Observable
       .combineLatest(
@@ -49,8 +52,8 @@ export class ServerConnectionMonitorComponent implements OnInit {
         }
       );
 
-    this.countdownTimerObs.subscribe(next => {
-      console.log(next);
-    });
+    // this.countdownTimerObs.subscribe(next => {
+    //   console.log(next);
+    // });
   }
 }
