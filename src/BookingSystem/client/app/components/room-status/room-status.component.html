@@ -1,15 +1,17 @@
 <ng-container>
-  <p>{{roomStatusText()}}</p>
+  <ng-container *ngIf="isOccupiedNow(room); else notIsOccupiedNow">
+    <p class="text-uppercase">Occupied</p>
 
-  <ng-container *ngIf="isOccupiedNow(room) as isOccupiedNow; else notIsOccupiedNow">
-    <p>(REMAINING TIME HERE)</p>
+    <p class="text-sentence-case">{{remainingTimeStringObs | async}} left</p>
 
     <bs-meeting-info [meeting]="currentMeeting(room)"></bs-meeting-info>
   </ng-container>
 
   <ng-template #notIsOccupiedNow>
-    <ng-container *ngIf="hasNextMeeting(room) as hasNextMeeting">
-      <p>(NEXT MEETING START TIME HERE)</p>
+    <p class="text-uppercase">Available</p>
+
+    <ng-container *ngIf="hasNextMeeting(room)">
+      <p>Until {{nextMeetingStartTime | date: 'shortTime'}}</p>
     </ng-container>
   </ng-template>
 </ng-container>
