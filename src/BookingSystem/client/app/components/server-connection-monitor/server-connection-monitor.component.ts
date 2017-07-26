@@ -6,6 +6,8 @@ import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 
+import * as moment from 'moment';
+
 import { ResponseStatus } from '../../types/response-status';
 import { BookingSystemService } from '../../services/booking-system.service';
 
@@ -24,36 +26,36 @@ export class ServerConnectionMonitorComponent implements OnInit {
   responseStatusObs: Observable<ResponseStatus>;
 
   nowObs: Observable<Date>;
-  countdownTimerObs: Observable<Date>;
+  countdownTimerObs: Observable<string>;
 
   constructor(
     private _bookingSystemService: BookingSystemService,
   ) { }
 
   ngOnInit() {
+    const nowDate = new Date();
+    const initialResponse = new ResponseStatus(202, 'OK');
+    initialResponse.date = nowDate;
+
     this.responseStatusObs = this._bookingSystemService.getResponseStatus()
-      .startWith(new ResponseStatus(202, 'OK'));
+      .startWith(initialResponse);
 
     this.nowObs = Observable
-      .timer(this._bookingSystemService.initialUpdateDelay, this._tickPeriod)
+      .timer(this._tickPeriod, this._tickPeriod)
       .map(
         () => {
           return new Date();
         },
       )
-      .startWith(new Date());
+      .startWith(nowDate);
 
     this.countdownTimerObs = Observable
       .combineLatest(
         this.responseStatusObs,
         this.nowObs,
         (responseStatus, now) => {
-          return new Date(responseStatus.date.getTime() + this._bookingSystemService.updatePeriod - now.getTime());
+          return moment(now).to(moment(responseStatus.date).add(this._bookingSystemService.updatePeriod), true);
         }
       );
-
-    // this.countdownTimerObs.subscribe(next => {
-    //   console.log(next);
-    // });
   }
 }

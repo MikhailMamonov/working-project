@@ -1,12 +1,9 @@
 <ng-container *ngIf="responseStatusObs | async as responseStatus; else acquiringStatus">
-  <!--<ng-container *ngIf="countdownTimerObs | async as countdownTimer">-->
-    <ng-container *ngIf="!responseStatus.isSuccess()">
-      <p>Error {{responseStatus.status}}: {{responseStatus.statusText}}</p>
+  <ng-container *ngIf="!responseStatus.isSuccess()">
+    <p>Error {{responseStatus.status}}: {{responseStatus.statusText}}</p>
 
-      <!--<p>Retrying in {{countdownTimer | date: 'mm:ss'}} ...</p>-->
-      <p>Retrying in {{countdownTimerObs | async | date: 'mm:ss'}} ...</p>
-    </ng-container>
-  <!--</ng-container>-->
+    <p>Retrying in {{countdownTimerObs | async}} ...</p>
+  </ng-container>
 </ng-container>
 
 <ng-template #acquiringStatus>
