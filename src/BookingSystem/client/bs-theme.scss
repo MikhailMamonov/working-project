@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$bs-primary: mat-palette($mat-indigo);
+$bs-accent: mat-palette($mat-pink, A200, A100, A400);
+$bs-warn: mat-palette($mat-red);
+
+$bs-theme: mat-light-theme($bs-primary, $bs-accent, $bs-warn);
+
+.bs-theme {
+  @include angular-material-theme($bs-theme);
+
+  $bs-available: mat-palette($mat-green);
+  $bs-occupied: mat-palette($mat-red);
+
+  .bs-room-available {
+    background-color: mat-color($bs-available);
+  }
+
+  .bs-room-occupied {
+    background-color: mat-color($bs-occupied);
+  }
+}
