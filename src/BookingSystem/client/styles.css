@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.bs-text-sentence-case {
+  text-transform: lowercase;
+}
+
+.bs-text-sentence-case::first-letter {
+  text-transform: uppercase;
+}
+
+.bs-h-100v {
+  height: 100vh !important;
+}
+
+.bs-w-100v {
+  width: 100vw !important;
+}

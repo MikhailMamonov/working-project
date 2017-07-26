@@ -1,21 +1,36 @@
-<div class="container bg-faded">
+<div class="container-fluid p-0 bs-h-100v_ bs-w-100v_">
   <div class="row justify-content-end">
-    <div class="col-3 text-right">
-      <bs-current-time></bs-current-time>
+    <div class="col col-auto mat-subheading-2 mb-0">
+      <div class="container-fluid">
+        <bs-current-time></bs-current-time>
+      </div>
     </div>
   </div>
 
-  <div *ngFor="let room of (meetingRoomsObs | async)"
-       class="row">
-    <div bsRoomInfoColorize [room]="room"
-         class="col">
-      <bs-room-info [room]="room"></bs-room-info>
+  <ng-container *ngIf="meetingRoomsObs | async as meetingRooms; else notMeetingRooms">
+    <div *ngFor="let room of meetingRooms"
+         class="row">
+      <div class="col">
+        <bs-room-info [room]="room"></bs-room-info>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-template #notMeetingRooms>
+    <div class="row justify-content-center">
+      <div class="col col-auto">
+        <div class="container-fluid">
+          <md-spinner></md-spinner>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 
   <div class="row justify-content-center">
-    <div class="col-3 text-center">
-      (COMPANY LOGO HERE)
+    <div class="col col-auto mat-subheading-2 mb-0">
+      <div class="container-fluid">
+        (COMPANY LOGO HERE)
+      </div>
     </div>
   </div>
 </div>

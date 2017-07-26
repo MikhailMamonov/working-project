@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
+import { MdProgressSpinnerModule } from '@angular/material';
+
 import { MeetingRoom } from '../../types/meeting-room';
 
 import { BookingSystemService } from '../../services/booking-system.service';

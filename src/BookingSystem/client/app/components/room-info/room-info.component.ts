@@ -14,6 +14,7 @@ import { MeetingRoom } from '../../types/meeting-room';
 export class RoomInfoComponent implements OnInit {
   @Input() room: MeetingRoom;
 
+  isOccupiedNow = MeetingRoom.isOccupiedNow;
   hasNextMeeting = MeetingRoom.hasNextMeeting;
   nextMeeting = MeetingRoom.nextMeeting;
 

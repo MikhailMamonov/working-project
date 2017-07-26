@@ -1,11 +1,11 @@
-<ng-container *ngIf="responseStatusObs | async as responseStatus; else acquiringStatus">
+<ng-container *ngIf="responseStatusObs | async as responseStatus; else notResponseStatus">
   <ng-container *ngIf="!responseStatus.isSuccess()">
-    <p>Error {{responseStatus.status}}: {{responseStatus.statusText}}</p>
+    <p class="mat-title mb-0">Error {{responseStatus.status}}: {{responseStatus.statusText}}</p>
 
-    <p>Retrying in {{countdownTimerObs | async}} ...</p>
+    <p class="mat-subheading-2 mb-0">Retrying connection attempt in {{countdownTimerObs | async}} ...</p>
   </ng-container>
 </ng-container>
 
-<ng-template #acquiringStatus>
-  <p>Acquiring server connection status...</p>
+<ng-template #notResponseStatus>
+  <p class="mat-subheading-2 mb-0">Acquiring server connection status...</p>
 </ng-template>
