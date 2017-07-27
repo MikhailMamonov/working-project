@@ -21,6 +21,9 @@ import { BookingSystemService } from '../../services/booking-system.service';
   ],
 })
 export class ServerConnectionMonitorComponent implements OnInit {
+  // TODO: [1;0] Memorize and show moment of the first error.
+  // TODO: [1;0] Make countdown timer optional.
+
   private readonly _tickPeriod = 1000 * 1; // 1s // TODO: [1;0] Move to config
 
   responseStatusObs: Observable<ResponseStatus>;
