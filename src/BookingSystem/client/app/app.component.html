@@ -1,4 +1,4 @@
-﻿<div class="container-fluid p-0 w-100 mat-app-background bs-theme">
+﻿<div class="container-fluid p-0 d-flex flex-column mat-app-background justify-content-center bs-theme bs-mh-100v">
   <div class="row mx-0 justify-content-center">
     <div class="col col-auto">
       <div class="container-fluid text-center">
@@ -7,5 +7,21 @@
     </div>
   </div>
 
+  <div class="row mx-0 justify-content-end mb-auto">
+    <div class="col col-auto mat-subheading-2 mb-0">
+      <div class="container-fluid">
+        <bs-current-time></bs-current-time>
+      </div>
+    </div>
+  </div>
+
   <router-outlet></router-outlet>
+
+  <div class="row mx-0 justify-content-center mt-auto">
+    <div class="col col-auto mat-subheading-2 mb-0">
+      <div class="container-fluid">
+        (COMPANY LOGO HERE)
+      </div>
+    </div>
+  </div>
 </div>
