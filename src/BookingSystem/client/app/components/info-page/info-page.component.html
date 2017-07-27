@@ -1,7 +1,8 @@
-<div class="container-fluid p-0 d-flex flex-column justify-content-between">
+<div class="container-fluid p-0 h-100 d-flex justify-content-center align-items-center">
+  <!--TODO: [2;1] Use slider here-->
   <ng-container *ngIf="meetingRoomsObs | async as meetingRooms; else notMeetingRooms">
     <div *ngFor="let room of meetingRooms"
-         class="row mx-0">
+         class="row mx-0 w-100 h-100">
       <div class="col px-0">
         <bs-room-info [room]="room"></bs-room-info>
       </div>
@@ -9,7 +10,7 @@
   </ng-container>
 
   <ng-template #notMeetingRooms>
-    <div class="row mx-0 justify-content-center">
+    <div class="row mx-0">
       <div class="col col-auto">
         <div class="container-fluid">
           <md-spinner></md-spinner>

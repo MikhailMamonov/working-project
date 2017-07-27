@@ -1,4 +1,5 @@
-﻿<div class="container-fluid p-0 d-flex flex-column mat-app-background justify-content-center bs-theme bs-mh-100v">
+﻿<div class="container-fluid p-0 bs-h-100v bs-theme">
+  <!--TODO: [2;1] Show it using `MdDialog'-->
   <div class="row mx-0 justify-content-center">
     <div class="col col-auto">
       <div class="container-fluid text-center">
@@ -7,20 +8,24 @@
     </div>
   </div>
 
-  <div class="row mx-0 justify-content-end mb-auto">
-    <div class="col col-auto mat-subheading-2 mb-0">
-      <div class="container-fluid">
-        <bs-current-time></bs-current-time>
+  <div class="w-100" style="position: absolute; top: 0; z-index: 1">
+    <div class="row mx-0 justify-content-end mb-auto">
+      <div class="col col-auto mat-title mb-0">
+        <div class="container-fluid">
+          <bs-current-time></bs-current-time>
+        </div>
       </div>
     </div>
   </div>
 
   <router-outlet></router-outlet>
 
-  <div class="row mx-0 justify-content-center mt-auto">
-    <div class="col col-auto mat-subheading-2 mb-0">
-      <div class="container-fluid">
-        (COMPANY LOGO HERE)
+  <div class="w-100" style="position: absolute; bottom: 0; z-index: 1">
+    <div class="row mx-0 justify-content-center mt-auto">
+      <div class="col col-auto mat-title mb-0">
+        <div class="container-fluid">
+          (COMPANY LOGO HERE)
+        </div>
       </div>
     </div>
   </div>
