@@ -6,11 +6,19 @@ $bs-primary: mat-palette($mat-indigo);
 $bs-accent: mat-palette($mat-pink, A200, A100, A400);
 $bs-warn: mat-palette($mat-red);
 
-$bs-theme: mat-light-theme($bs-primary, $bs-accent, $bs-warn);
+$bs-theme: mat-dark-theme($bs-primary, $bs-accent, $bs-warn);
+
+@include angular-material-theme($bs-theme);
+
+$bs-foreground: map_get($bs-theme, foreground);
+$bs-background: map_get($bs-theme, background);
+
+html, body {
+  background-color: mat-color($bs-background, background);
+  color: mat-color($bs-foreground, text);
+}
 
 .bs-theme {
-  @include angular-material-theme($bs-theme);
-
   $bs-available: mat-palette($mat-green);
   $bs-occupied: mat-palette($mat-red);
 
