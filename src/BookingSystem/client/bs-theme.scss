@@ -2,31 +2,31 @@
 
 @include mat-core();
 
-$bs-primary: mat-palette($mat-orange);
-$bs-accent: mat-palette($mat-orange, A200, A100, A400);
-$bs-warn: mat-palette($mat-red);
+$bs-primary-palette: mat-palette($mat-orange);
+$bs-accent-palette: mat-palette($mat-orange, A200, A100, A400);
+$bs-warn-palette: mat-palette($mat-red);
 
-$bs-theme: mat-dark-theme($bs-primary, $bs-accent, $bs-warn);
+$bs-theme: mat-dark-theme($bs-primary-palette, $bs-accent-palette, $bs-warn-palette);
 
 @include angular-material-theme($bs-theme);
 
-$bs-foreground: map_get($bs-theme, foreground);
-$bs-background: map_get($bs-theme, background);
-
-html, body {
-  background-color: mat-color($bs-background, background);
-  color: mat-color($bs-foreground, text);
-}
+$bs-theme-foreground: map_get($bs-theme, foreground);
+$bs-theme-background: map_get($bs-theme, background);
 
 .bs-theme {
+  $bs-base-palette: mat-palette($mat-blue-grey);
+
+  background-color: mat-color($bs-base-palette);
+  color: map_get($bs-theme-foreground, text);
+
   .bs-room-info {
     &.bs-room-available {
-      $bs-available: mat-palette($mat-green);
-      $bs-available-theme: mat-dark-theme($bs-available, $bs-available);
+      $bs-available-palette: mat-palette($mat-green);
+      $bs-available-theme: mat-dark-theme($bs-available-palette, $bs-available-palette);
       $bs-available-foreground: map_get($bs-available-theme, foreground);
 
-      background-color: mat-color($bs-available);
-      color: mat-color($bs-available-foreground, text);
+      background-color: mat-color($bs-available-palette);
+      color: map_get($bs-available-foreground, text);
     }
 
     &.bs-room-occupied {
@@ -35,7 +35,7 @@ html, body {
       $bs-occupied-foreground: map_get($bs-occupied-theme, foreground);
 
       background-color: mat-color($bs-occupied);
-      color: mat-color($bs-occupied-foreground, text);
+      color: map_get($bs-occupied-foreground, text);
     }
   }
 }
