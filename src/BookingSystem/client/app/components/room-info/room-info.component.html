@@ -2,13 +2,11 @@
   <div [ngClass]="{'bs-room-occupied': isOccupiedNow(room), 'bs-room-available': !isOccupiedNow(room)}"
        class="container-fluid h-100 d-flex flex-column justify-content-center">
 
-    <div style="position: absolute; top: 0">
-      <div class="row">
-        <div class="col">
-          <p class="mat-title mb-0">
-            <bs-room-name [roomName]="room?.name"></bs-room-name>
-          </p>
-        </div>
+    <div class="row mb-auto">
+      <div class="col">
+        <p class="mat-title mb-0">
+          <bs-room-name [roomName]="room?.name"></bs-room-name>
+        </p>
       </div>
     </div>
 
@@ -19,7 +17,7 @@
     </div>
 
     <div *ngIf="hasNextMeeting(room)"
-         class="row">
+         class="row mb-auto">
       <div class="col">
         <p class="text-uppercase mat-title mb-0">Next</p>
 
