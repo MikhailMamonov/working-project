@@ -26,6 +26,6 @@ export class Meeting {
   }
 
   static endTime(meeting: Meeting): Moment {
-    return moment(meeting.startTime).add(moment.duration(meeting.duration));
+    return Meeting.startTime(meeting).add(moment.duration(meeting.duration));
   }
 }
