@@ -1,0 +1,21 @@
+<ng-container>
+  <h1 md-dialog-title>Server error</h1>
+
+  <div md-dialog-content>
+    <ng-container *ngIf="data | async as data; else notData">
+      <ng-container *ngIf="!data.responseStatus.isSuccess()">
+        <p class="mat-title mb-0">Error {{data.responseStatus.status}}: {{data.responseStatus.statusText}}</p>
+
+        <p class="mat-subheading-2 mb-0">Not receiving valid data since {{data.firstErrorDate | date: 'medium'}}</p>
+
+        <p class="mat-subheading-2 mb-0">Done {{data.retriesCount}} retries total</p>
+
+        <!--TODO: [0;1] Show countdown timer here-->
+      </ng-container>
+
+      <ng-template #notData>
+        <p class="mat-subheading-2 mb-0">Acquiring status...</p>
+      </ng-template>
+    </ng-container>
+  </div>
+</ng-container>

@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/timer';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/startWith';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import * as moment from 'moment';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { ResponseStatus } from '../../types/response-status';
 import { BookingSystemService } from '../../services/booking-system.service';
+import { ResponseStatus } from '../../types/response-status';
+import { DialogData } from './dialog-data';
+import { ServerConnectionMonitorDialogComponent } from './server-connection-monitor-dialog.component'
 
 @Component({
   selector: 'bs-server-connection-monitor',
@@ -21,44 +20,92 @@ import { BookingSystemService } from '../../services/booking-system.service';
   ],
 })
 export class ServerConnectionMonitorComponent implements OnInit {
-  // TODO: [1;0] Memorize and show moment of the first error.
-  // TODO: [1;0] Make countdown timer optional.
-
-  private readonly _tickPeriod = 1000 * 1; // 1s // TODO: [1;0] Move to config
-
   responseStatusObs: Observable<ResponseStatus>;
 
-  nowObs: Observable<Date>;
-  countdownTimerObs: Observable<string>;
+  private _firstErrorDate: Date;
+  private _retriesCount = -1;
+
+  private _dialogData: DialogData;
+  private _dialogDataSubj: BehaviorSubject<DialogData>;
+
+  private _dialogRef: MdDialogRef<ServerConnectionMonitorDialogComponent>;
 
   constructor(
     private _bookingSystemService: BookingSystemService,
+    private _dialog: MdDialog,
   ) { }
 
   ngOnInit() {
-    const nowDate = new Date();
-    const initialResponse = new ResponseStatus(202, 'OK');
-    initialResponse.date = nowDate;
+    this.responseStatusObs = this._bookingSystemService.getResponseStatus();
 
-    this.responseStatusObs = this._bookingSystemService.getResponseStatus()
-      .startWith(initialResponse);
+    this._dialogData = {
+      responseStatus: undefined,
 
-    this.nowObs = Observable
-      .timer(this._tickPeriod, this._tickPeriod)
-      .map(
-        () => {
-          return new Date();
-        },
-      )
-      .startWith(nowDate);
+      firstErrorDate: undefined,
 
-    this.countdownTimerObs = Observable
-      .combineLatest(
-        this.responseStatusObs,
-        this.nowObs,
-        (responseStatus, now) => {
-          return moment(now).to(moment(responseStatus.date).add(this._bookingSystemService.updatePeriod), true);
+      retriesCount: -1,
+    };
+    this._dialogDataSubj = new BehaviorSubject<DialogData>(undefined);
+
+    this.responseStatusObs.subscribe(next => {
+      if (!next.isSuccess()) {
+        if (!this._firstErrorDate) {
+          this._firstErrorDate = next.date;
         }
-      );
+
+        if (this._retriesCount !== -1) {
+          ++this._retriesCount;
+        } else {
+          this._retriesCount = 0;
+        }
+
+        if (!this._dialogRef) {
+          this._openDialog(this._getDialogData());
+        }
+
+        this._setDialogData({
+          responseStatus: next,
+
+          firstErrorDate: this._firstErrorDate,
+
+          retriesCount: this._retriesCount,
+        });
+      } else {
+        this._firstErrorDate = undefined;
+        this._retriesCount = -1;
+
+        this._setDialogData(undefined);
+
+        this._closeDialog();
+      }
+    });
+  }
+
+  private _openDialog(dialogDataObs: Observable<DialogData>): void {
+    if (this._dialogRef) {
+      this._closeDialog();
+    }
+
+    this._dialogRef = this._dialog.open(ServerConnectionMonitorDialogComponent, {
+      disableClose: true,
+
+      data: dialogDataObs,
+    });
+  }
+
+  private _closeDialog(): void {
+    if (this._dialogRef) {
+      this._dialogRef.close();
+      this._dialogRef = undefined;
+    }
+  }
+
+  private _setDialogData(dialogData: DialogData): void {
+    this._dialogData = dialogData;
+    this._dialogDataSubj.next(this._dialogData);
+  }
+
+  private _getDialogData(): Observable<DialogData> {
+    return this._dialogDataSubj.asObservable();
   }
 }
