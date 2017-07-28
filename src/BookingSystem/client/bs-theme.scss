@@ -6,7 +6,7 @@ $bs-primary: mat-palette($mat-orange);
 $bs-accent: mat-palette($mat-orange, A200, A100, A400);
 $bs-warn: mat-palette($mat-red);
 
-$bs-theme: mat-light-theme($bs-primary, $bs-accent, $bs-warn);
+$bs-theme: mat-dark-theme($bs-primary, $bs-accent, $bs-warn);
 
 @include angular-material-theme($bs-theme);
 
