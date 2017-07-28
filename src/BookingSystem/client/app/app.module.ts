@@ -18,7 +18,6 @@ import { RoomNameComponent } from './components/room-name/room-name.component';
 import { RoomStatusComponent } from './components/room-status/room-status.component';
 import { MeetingInfoComponent } from './components/meeting-info/meeting-info.component';
 import { ServerConnectionMonitorComponent } from './components/server-connection-monitor/server-connection-monitor.component';
-import { RoomInfoColorizeDirective } from './directives/room-info-colorize/room-info-colorize.directive';
 
 import { BookingSystemService } from './services/booking-system.service';
 
@@ -45,7 +44,6 @@ import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.serv
     RoomStatusComponent,
     MeetingInfoComponent,
     ServerConnectionMonitorComponent,
-    RoomInfoColorizeDirective,
   ],
 
   providers: [
