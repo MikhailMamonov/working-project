@@ -19,14 +19,23 @@ html, body {
 }
 
 .bs-theme {
-  $bs-available: mat-palette($mat-green);
-  $bs-occupied: mat-palette($mat-red);
+  .bs-room-info {
+    &.bs-room-available {
+      $bs-available: mat-palette($mat-green);
+      $bs-available-theme: mat-dark-theme($bs-available, $bs-available);
+      $bs-available-foreground: map_get($bs-available-theme, foreground);
 
-  .bs-room-available {
-    background-color: mat-color($bs-available);
-  }
+      background-color: mat-color($bs-available);
+      color: mat-color($bs-available-foreground, text);
+    }
 
-  .bs-room-occupied {
-    background-color: mat-color($bs-occupied);
+    &.bs-room-occupied {
+      $bs-occupied: mat-palette($mat-red);
+      $bs-occupied-theme: mat-dark-theme($bs-occupied, $bs-occupied);
+      $bs-occupied-foreground: map_get($bs-occupied-theme, foreground);
+
+      background-color: mat-color($bs-occupied);
+      color: mat-color($bs-occupied-foreground, text);
+    }
   }
 }
