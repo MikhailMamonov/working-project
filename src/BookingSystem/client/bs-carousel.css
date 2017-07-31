@@ -1,0 +1,15 @@
+.bs-carousel {
+  overflow: hidden;
+}
+
+.bs-carousel__container {
+
+}
+
+.bs-carousel__container.bs-carousel__container_animating {
+  transition: transform 300ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.bs-carousel__container-item {
+
+}

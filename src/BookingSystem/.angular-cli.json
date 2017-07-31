@@ -23,6 +23,7 @@
         "../node_modules/material-design-icons/iconfont/material-icons.css",
         "styles.css",
         "bs-common.css",
+        "bs-carousel.css",
         "bs-theme.scss"
       ],
       "scripts": [],
