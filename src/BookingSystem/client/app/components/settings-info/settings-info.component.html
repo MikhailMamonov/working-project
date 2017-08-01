@@ -12,7 +12,8 @@
 
     <div class="row mb-auto">
       <div class="col">
-        <bs-room-status [room]="room"></bs-room-status>
+        <input (keyup)="onKey($event)">
+        <p>{{values}}</p>
       </div>
     </div>
 

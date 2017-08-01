@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { MeetingRoom } from '../../types/meeting-room';
 
 import { BookingSystemService } from '../../services/booking-system.service';
-import {SettingsForm} from "../../types/settings";
+
 
 @Component({
     selector: 'bs-settings-page',
@@ -17,18 +17,17 @@ import {SettingsForm} from "../../types/settings";
     ],
 })
 export class SettingsPageComponent implements OnInit {
-    settingsFormObs: Observable<SettingsForm>;
 
     constructor(
         private _bookingSystemService: BookingSystemService,
     ) { }
     ngOnInit() {
-        this.settingsFormObs = this._bookingSystemService.getSettingsForm()
-            .map(settingsForm => {
-                console.log('InfoPageComponent#ngOnInit', settingsForm);
+    }
 
-                return settingsForm;
-            });
+    values = '';
+
+    onKey(event: any) { // without type info
+        this.values += event.target.value + ' | ';
     }
 
 }
