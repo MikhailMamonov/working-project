@@ -25,6 +25,8 @@ import { BookingSystemService } from './services/booking-system.service';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.service';
+import {SettingsPageComponent} from "./components/settings/settings-page.component";
+import {SettingsInfoComponent} from "./components/settings-info/settings-info.component";
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.serv
     AppComponent,
     InfoPageComponent,
     CurrentTimeComponent,
+    SettingsPageComponent,
     RoomInfoComponent,
+    SettingsInfoComponent,
     RoomNameComponent,
     RoomStatusComponent,
     MeetingInfoComponent,

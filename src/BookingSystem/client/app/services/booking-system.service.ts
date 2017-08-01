@@ -8,6 +8,7 @@ import 'rxjs/add/observable/timer';
 import { MeetingRoom } from '../types/meeting-room';
 import { GetRoomsResponse } from '../types/get-rooms-response';
 import { ResponseStatus } from '../types/response-status';
+import {SettingsForm} from '../types/settings';
 
 @Injectable()
 export class BookingSystemService {
@@ -18,12 +19,14 @@ export class BookingSystemService {
 
   private _cache: {
     meetingRooms: MeetingRoom[],
+    settingsForm: SettingsForm,
 
     responseStatus: ResponseStatus,
   };
 
   private _meetingRoomsSubj: Subject<MeetingRoom[]>;
   private _responseStatusSubj: Subject<ResponseStatus>;
+  private _settingsFormSubj: Subject<SettingsForm>;
 
   private _updateTimerObs: Observable<number>;
 
@@ -38,7 +41,7 @@ export class BookingSystemService {
 
     this._meetingRoomsSubj = new Subject<MeetingRoom[]>();
     this._responseStatusSubj = new Subject<ResponseStatus>();
-
+    this._settingsFormSubj = new Subject<SettingsForm>();
     this._updateTimerObs = Observable.timer(this.initialUpdateDelay, this.updatePeriod);
     this._updateTimerObs.subscribe(
       () => {
@@ -74,6 +77,11 @@ export class BookingSystemService {
         }
       );
   }
+  private _setSettings(settingsForm: SettingsForm): void  {
+    console.log('BookingSystemService#setSettingsForm', settingsForm);
+    this._cache.settingsForm = settingsForm;
+    this._settingsFormSubj.next(this._cache.settingsForm);
+  }
 
   private _setRooms(meetingRooms: MeetingRoom[]): void {
     console.log('BookingSystemService#setRooms', meetingRooms);
@@ -84,6 +92,10 @@ export class BookingSystemService {
 
   getRooms(): Observable<MeetingRoom[]> {
     return this._meetingRoomsSubj.asObservable();
+  }
+
+  getSettingsForm(): Observable<SettingsForm> {
+    return this._settingsFormSubj.asObservable();
   }
 
   private _setResponseStatus(responseStatus: ResponseStatus): void {

@@ -1,0 +1,22 @@
+<div class="container-fluid p-0 h-100 d-flex justify-content-center align-items-center">
+    <!--TODO: [2;1] Use slider here-->
+    <ng-container *ngIf="meetingRoomsObs | async as meetingRooms; else notMeetingRooms">
+        <div *ngFor="let room of meetingRooms"
+             class="row mx-0 w-100 h-100">
+            <div class="col px-0">
+                <bs-settings-info [room]="room"></bs-settings-info>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #notMeetingRooms>
+        <div class="row mx-0">
+            <div class="col col-auto">
+                <div class="container-fluid">
+                    <md-spinner></md-spinner>
+                    <!--<md-progress-spinner value="50"></md-progress-spinner>-->
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
