@@ -6,7 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import 'hammerjs';
 
-import { MdCoreModule, MdProgressSpinnerModule, MdDialogModule } from '@angular/material';
+import {
+  MdCoreModule, MdProgressSpinnerModule, MdDialogModule, MdInputModule, MdTooltipModule,
+  MdAutocompleteModule
+} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,8 +28,36 @@ import { BookingSystemService } from './services/booking-system.service';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.service';
-import {SettingsPageComponent} from "./components/settings/settings-page.component";
-import {SettingsInfoComponent} from "./components/settings-info/settings-info.component";
+import {SettingsPageComponent} from './components/settings/settings-page.component';
+import {SettingsInfoComponent} from './components/settings-info/settings-info.component';
+import {CdkTableModule} from '@angular/cdk';
+import {
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdDatepickerModule,
+    MdExpansionModule,
+    MdGridListModule,
+    MdIconModule,
+    MdListModule,
+    MdMenuModule,
+    MdNativeDateModule,
+    MdPaginatorModule,
+    MdProgressBarModule,
+    MdRadioModule,
+    MdRippleModule,
+    MdSelectModule,
+    MdSidenavModule,
+    MdSliderModule,
+    MdSlideToggleModule,
+    MdSnackBarModule,
+    MdSortModule,
+    MdTableModule,
+    MdTabsModule,
+    MdToolbarModule,
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -39,8 +70,9 @@ import {SettingsInfoComponent} from "./components/settings-info/settings-info.co
     MdCoreModule,
     MdProgressSpinnerModule,
     MdDialogModule,
-  ],
+      MdInputModule,
 
+  ],
   declarations: [
     AppComponent,
     InfoPageComponent,
@@ -62,6 +94,7 @@ import {SettingsInfoComponent} from "./components/settings-info/settings-info.co
 
   providers: [
     BookingSystemService,
+
   ],
 
   bootstrap: [

@@ -1,4 +1,4 @@
-<div class="container-fluid p-0 h-100 d-flex justify-content-center align-items-center">
+<div class="container-fluid  p-0 h-100 d-flex justify-content-center align-items-center">
     <!--TODO: [2;1] Use slider here-->
         <div class="row mx-0 w-100 h-100">
             <div class="col px-0">
@@ -6,25 +6,17 @@
                 <p>{{values}}</p>
             </div>
         </div>
-    <div class="container-fluid">
-    <div class="row mx-0 w-100 h-100">
-        <div class="span4">
-            <input (keyup)="onKey($event)">
-            <p>{{values}}</p>
-        </div>
-    </div>
-</div>
+
+    <md-input-container class="container-address">
+        <input mdInput placeholder="Favorite food" value="Sushi">
+    </md-input-container>
 
     <ng-template #notMeetingRooms>
-        <div class="row mx-0">
-            <div class="col col-auto">
-                <div class="container-fluid">
-                    <md-spinner></md-spinner>
-                    <input (keyup)="onKey($event)">
-                    <p>{{values}}</p>
-                    <!--<md-progress-spinner value="50"></md-progress-spinner>-->
-                </div>
-            </div>
-        </div>
+
     </ng-template>
 </div>
+
+
+
+
+

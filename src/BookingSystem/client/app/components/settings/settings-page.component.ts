@@ -24,10 +24,7 @@ export class SettingsPageComponent implements OnInit {
     ngOnInit() {
     }
 
-    values = '';
-
     onKey(event: any) { // without type info
-        this.values += event.target.value + ' | ';
     }
 
 }
