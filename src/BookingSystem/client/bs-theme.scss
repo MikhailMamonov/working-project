@@ -6,9 +6,14 @@ $bs-primary-palette: mat-palette($mat-orange);
 $bs-accent-palette: mat-palette($mat-orange, A200, A100, A400);
 $bs-warn-palette: mat-palette($mat-red);
 
-$bs-theme: mat-dark-theme($bs-primary-palette, $bs-accent-palette, $bs-warn-palette);
+$bs-settings-primary-palette: mat-palette($mat-blue);
+$bs-settings-accent-palette: mat-palette($mat-light-blue, A200, A100, A400);
+$bs-settings-warn-palette: mat-palette($mat-red);
 
+$bs-theme: mat-light-theme($bs-primary-palette, $bs-accent-palette, $bs-warn-palette);
+$bs-settings-theme: mat-light-theme($bs-settings-primary-palette, $bs-settings-accent-palette, $bs-settings-warn-palette);
 @include angular-material-theme($bs-theme);
+
 
 $bs-theme-foreground: map_get($bs-theme, foreground);
 $bs-theme-background: map_get($bs-theme, background);
@@ -18,6 +23,7 @@ $bs-theme-background: map_get($bs-theme, background);
 
   background-color: mat-color($bs-base-palette);
   color: map_get($bs-theme-foreground, text);
+
 
   .bs-room-info {
     &.bs-room-available {
@@ -38,4 +44,17 @@ $bs-theme-background: map_get($bs-theme, background);
       color: map_get($bs-occupied-foreground, text);
     }
   }
+
+  //.bs-settings {
+  //
+  //  &.bs-settings-main {
+  //    @include angular-material-theme($bs-settings-theme);
+  //    $bs-settings: mat-palette($mat-blue);
+  //    $bs-settings-theme: mat-light-theme($bs-settings, $bs-settings);
+  //    $bs-settings-foreground: map_get($bs-settings-theme, foreground);
+  //
+  //    background-color: mat-color($mat-light-blue);
+  //    color: map_get($bs-settings-foreground, text);
+  //  }
+  //}
 }
