@@ -1,15 +1,55 @@
-<div class="container-fluid settings p-0 h-100 d-flex justify-content-center align-items-center">
+<div class="container-fluid settings p-0 h-100 ">
+    <md-toolbar>
+                Settings
+    </md-toolbar>
+<br>
+    <br>
+    <br>
+    <form class="settings-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
 
-        <md-input-container class="container-address">
-            <input mdInput placeholder="Favorite food" value="Sushi">
-        </md-input-container>
+        <table class="settings-table" cellspacing="0">
+            <tr>
+                <td>
+                    <div class="form-group" >
+                    <md-input-container class="container-address">
+                    <input mdInput placeholder="Exchange server" class="form-control" name="username" required/>
+                    <div *ngIf="f.submitted && !username.valid" class="help-block"> Exchange server is required</div>
+                    </md-input-container>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            <td>
+                <div class="form-group" >
+                    <md-input-container class="container-login">
+                        <input mdInput placeholder="Login">
+                        <div *ngIf="f.submitted && !password.valid" class="help-block">Login is required</div>
+                    </md-input-container>
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <div class="form-group" >
+                <md-input-container class="container-password">
+                <input mdInput type="password" class="pswd" placeholder="Password">
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                </md-input-container>
+                </div>
+            </td>
+        </tr></table>
 
-    <ng-template #notMeetingRooms>
-
-    </ng-template>
+    <div class="container-fluid buttons-container">
+    <div class="row mb-auto ">
+    <div class="col col-7 col-buttons">
+        <button md-raised-button class="btn-save">Save</button>
+        <button md-raised-button class="btn-add">Add room</button>
+        <!--<bs-settings-buttons [roomName]="room?.name"></bs-settings-buttons>-->
+    </div>
 </div>
-
-
+    </div>
+    </form>
+</div>
 
 
 

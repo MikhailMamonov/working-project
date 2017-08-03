@@ -1,11 +1,72 @@
-.container-address{
-    width: 500px;
-    margin-right: 100px;
+
+.settings{
+    background-color: snow;
+}
+
+.settings-form{
+    margin-left: 50px;
+}
+
+.settings-table{
+    width: 370px;
+}
+
+.buttons-container{
+    margin-top: 90px;
+}
+
+.pswd{
+    font:small-caption;font-size:16px;
+}
+.col-buttons{
+    margin-left: 200px;
+}
+
+.btn-save{
+    color: black;
+    border: 2px solid grey; /* Green */
+    /*color : rgb(49, 46, 46);*/
+    /*!*background-color: rgba(255, 222, 121, 0.96);*!*/
+    /*border-radius: 10px 0 0 10px;*/
+    /*font-size: 16px;*/
+}
+
+.btn-add{
+    color: black;
+    border: 2px solid grey; /* Green */
+    /*background-color: #4CAF50; !* Green *!*/
+    /*border-radius: 10px 0px 0px 10px;*/
+    /*!*color: white;*!*/
+
+    /*text-decoration: none;*/
+    /*!*font-size: 16px;*!*/
+}
+
+.settings-title{
+    margin-left: 30px;
+    color: darkblue;
 }
 
 
-.settings{
-    background-color: white;
+.container-address{
+/*margin-bottom: 350px;*/
+/*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    width: 100%;
+}
+
+.container-login{
+    /*margin-bottom: 250px;*/
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    width: 100%;
+}
+
+.container-password{
+    /*margin-bottom: 150px;*/
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    width: 100%;
 }
 
 

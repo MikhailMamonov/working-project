@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import {
-  MdCoreModule, MdProgressSpinnerModule, MdDialogModule, MdInputModule, MdTooltipModule,
-  MdAutocompleteModule
+    MdCoreModule, MdProgressSpinnerModule, MdDialogModule, MdInputModule, MdButtonModule, MdChipsModule, MdToolbarModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,35 +29,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.service';
 import {SettingsPageComponent} from './components/settings/settings-page.component';
 import {SettingsInfoComponent} from './components/settings-info/settings-info.component';
-import {CdkTableModule} from '@angular/cdk';
-import {
-    MdButtonModule,
-    MdButtonToggleModule,
-    MdCardModule,
-    MdCheckboxModule,
-    MdChipsModule,
-    MdDatepickerModule,
-    MdExpansionModule,
-    MdGridListModule,
-    MdIconModule,
-    MdListModule,
-    MdMenuModule,
-    MdNativeDateModule,
-    MdPaginatorModule,
-    MdProgressBarModule,
-    MdRadioModule,
-    MdRippleModule,
-    MdSelectModule,
-    MdSidenavModule,
-    MdSliderModule,
-    MdSlideToggleModule,
-    MdSnackBarModule,
-    MdSortModule,
-    MdTableModule,
-    MdTabsModule,
-    MdToolbarModule,
-} from '@angular/material';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -71,6 +41,9 @@ import {
     MdProgressSpinnerModule,
     MdDialogModule,
       MdInputModule,
+      MdButtonModule,
+      MdChipsModule,
+      MdToolbarModule
 
   ],
   declarations: [
