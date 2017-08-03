@@ -4,12 +4,8 @@
 
 
 export class User {
-    exchangeServer: string;
-    login: string;
+    id: number;
+    username: string;
     password: string;
-    constructor(exchangeServer:string, login: string, password: string) {
-        this.login = login;
-        this.password = password;
-        this.exchangeServer = exchangeServer;
-    }
+    exchangeserver: string;
 }
