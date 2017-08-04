@@ -6,13 +6,18 @@
     <br>
     <br>
     <form class="settings-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div *ngIf="f.form.invalid && (f.form.dirty || f.form.touched)"
+             class="alert alert-danger">
 
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
         <table class="settings-table" cellspacing="0">
             <tr>
                 <td>
                     <div class="form-group" >
                     <md-input-container class="container-address">
-                    <input mdInput placeholder="Exchange server" class="form-control" name="username" required/>
+                    <input mdInput placeholder="Exchange server" class="form-control" name="exchangeserver" [(ngModel)]="model.exchangeserver" #username="ngModel" required/>
                     <div *ngIf="f.submitted && !username.valid" class="help-block"> Exchange server is required</div>
                     </md-input-container>
                     </div>
@@ -22,7 +27,7 @@
             <td>
                 <div class="form-group" >
                     <md-input-container class="container-login">
-                        <input mdInput placeholder="Login">
+                        <input mdInput placeholder="Login" name="username" [(ngModel)]="model.username" #username="ngModel" required>
                         <div *ngIf="f.submitted && !password.valid" class="help-block">Login is required</div>
                     </md-input-container>
                 </div>
@@ -32,7 +37,7 @@
             <td>
                 <div class="form-group" >
                 <md-input-container class="container-password">
-                <input mdInput type="password" class="pswd" placeholder="Password">
+                <input mdInput type="password" class="pswd" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password">
                 <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                 </md-input-container>
                 </div>

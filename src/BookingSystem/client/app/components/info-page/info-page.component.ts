@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { MeetingRoom } from '../../types/meeting-room';
 
 import { BookingSystemService } from '../../services/booking-system.service';
+import {Credentials} from '../../types/credentials';
 
 @Component({
   selector: 'bs-info-page',
@@ -17,6 +18,7 @@ import { BookingSystemService } from '../../services/booking-system.service';
 })
 export class InfoPageComponent implements OnInit {
   meetingRoomsObs: Observable<MeetingRoom[]>;
+  credentialsObs: Observable<Credentials[]>;
 
   constructor(
     private _bookingSystemService: BookingSystemService,
@@ -29,5 +31,11 @@ export class InfoPageComponent implements OnInit {
 
         return meetingRooms;
       });
+    this.credentialsObs = this._bookingSystemService.getCredentials()
+        .map(credentials => {
+          console.log('InfoPageComponent#ngOnInit', credentials);
+
+          return credentials;
+        });
   }
 }

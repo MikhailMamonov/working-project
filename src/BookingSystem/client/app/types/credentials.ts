@@ -3,8 +3,8 @@
  */
 
 
-export class User {
-    id: number;
+export class Credentials {
+    id: string;
     username: string;
     password: string;
     exchangeserver: string;

@@ -29,13 +29,17 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryMeetingRoomsService } from './mock/in-memory-meeting-rooms.service';
 import {SettingsPageComponent} from './components/settings/settings-page.component';
 import {SettingsInfoComponent} from './components/settings-info/settings-info.component';
+import {InMemoryCredentialsService} from './mock/in-memory-credentials.service';
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(InMemoryMeetingRoomsService),
+    InMemoryWebApiModule.forRoot(InMemoryCredentialsService),
     BrowserAnimationsModule,
     MdCoreModule,
     MdProgressSpinnerModule,

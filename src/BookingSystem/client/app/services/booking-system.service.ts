@@ -8,6 +8,10 @@ import 'rxjs/add/observable/timer';
 import { MeetingRoom } from '../types/meeting-room';
 import { GetRoomsResponse } from '../types/get-rooms-response';
 import { ResponseStatus } from '../types/response-status';
+import {Credentials} from '../types/credentials';
+import {GetCredentialsResponse} from '../types/get-credentials-response';
+import {forEach} from "@angular/router/src/utils/collection";
+import {validate} from "codelyzer/walkerFactory/walkerFn";
 
 
 @Injectable()
@@ -16,16 +20,19 @@ export class BookingSystemService {
 
   readonly initialUpdateDelay = 1000 * 2; // 2s // TODO: [1;0] Move to config
   readonly updatePeriod = 1000 * 10; // 10s // TODO: [1;0] Move to config
-
+    private getCredentialsResponse:any;
+    private isLoggedIn = false;
   private _cache: {
     meetingRooms: MeetingRoom[],
     responseStatus: ResponseStatus,
+    credentials: Credentials[]
   };
 
   private _meetingRoomsSubj: Subject<MeetingRoom[]>;
   private _responseStatusSubj: Subject<ResponseStatus>;
-
+  private _credentialsSubj: Subject<Credentials[]>;
   private _updateTimerObs: Observable<number>;
+
 
   constructor(
     private _http: Http,
@@ -33,10 +40,12 @@ export class BookingSystemService {
     this._cache = {
       meetingRooms: undefined,
       responseStatus: undefined,
+      credentials: undefined
     };
 
     this._meetingRoomsSubj = new Subject<MeetingRoom[]>();
     this._responseStatusSubj = new Subject<ResponseStatus>();
+    this._credentialsSubj = new Subject<Credentials[]>();
     this._updateTimerObs = Observable.timer(this.initialUpdateDelay, this.updatePeriod);
     this._updateTimerObs.subscribe(
       () => {
@@ -54,13 +63,10 @@ export class BookingSystemService {
         next => {
           console.log('next', next);
           console.log('next.json', next.json());
-
           this._setResponseStatus(new ResponseStatus(next.status, next.statusText));
-
           const getRoomsResponse = next.json() as GetRoomsResponse;
           this._setRooms(getRoomsResponse.data);
         },
-
         (error: Response) => {
           console.log('error', error);
 
@@ -71,22 +77,64 @@ export class BookingSystemService {
           console.log('complete');
         }
       );
+    this._http
+        .get(`${this._apiUrl}/credentials`)
+        .subscribe(
+            next => {
+              console.log('next', next);
+              console.log('next.json', next.json());
+              this._setResponseStatus(new ResponseStatus(next.status, next.statusText));
+              this.getCredentialsResponse = next.json() as GetCredentialsResponse;
+              this._setCredentials(this.getCredentialsResponse.data);
+            },
+            (error: Response) => {
+              console.log('error', error);
+
+              this._setResponseStatus(new ResponseStatus(error.status, error.statusText));
+            },
+
+            () => {
+              console.log('complete');
+            }
+        );
   }
-
-
+    validateData(exchangeserver: string, username: string, password: string): boolean {
+        for (let i of this.getCredentialsResponse.data) {
+            if ((i.exchangeserver === exchangeserver) && (i.username === username) && (i.password === password)) {
+                return true;
+            }
+        }
+        return false;
+    }
   private _setRooms(meetingRooms: MeetingRoom[]): void {
     console.log('BookingSystemService#setRooms', meetingRooms);
 
     this._cache.meetingRooms = meetingRooms;
     this._meetingRoomsSubj.next(this._cache.meetingRooms);
   }
+  private _setCredentials(credentials: Credentials[]): void {
+    console.log('BookingSystemService#setCredentials', credentials);
+
+    this._cache.credentials = credentials;
+    this._credentialsSubj.next(this._cache.credentials);
+  }
 
   getRooms(): Observable<MeetingRoom[]> {
     return this._meetingRoomsSubj.asObservable();
   }
+  getCredentials(): Observable<Credentials[]> {
+    return this._credentialsSubj.asObservable();
+  }
+    login(exchangeserver: string, username: string, password: string) {
+        if (this.validateData(exchangeserver, username, password)) {
+            return true;
+        }
+        return false;
+            }
 
-
-
+    logout(): void {
+        this.isLoggedIn = false;
+    }
   private _setResponseStatus(responseStatus: ResponseStatus): void {
     console.log('BookingSystemService#setStatus', responseStatus);
 
