@@ -12,6 +12,6 @@ export const MOCK_CREDENTIALS = [
     },
 
     {
-        id: 1, username: 'Bob', password: '1234', exchangeserver: 'rogaikopyta@.com'
+        id: 2, username: 'Bob', password: '1234', exchangeserver: 'rogaikopyta@.com'
     }
 ];

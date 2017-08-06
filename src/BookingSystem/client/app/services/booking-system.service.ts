@@ -12,6 +12,7 @@ import {Credentials} from '../types/credentials';
 import {GetCredentialsResponse} from '../types/get-credentials-response';
 import {forEach} from "@angular/router/src/utils/collection";
 import {validate} from "codelyzer/walkerFactory/walkerFn";
+import {LocalStorageService} from "angular-2-local-storage";
 
 
 @Injectable()
@@ -20,6 +21,7 @@ export class BookingSystemService {
 
   readonly initialUpdateDelay = 1000 * 2; // 2s // TODO: [1;0] Move to config
   readonly updatePeriod = 1000 * 10; // 10s // TODO: [1;0] Move to config
+    private readonly _localStorageKey = 'currentUser';
     private getCredentialsResponse:any;
     private isLoggedIn = false;
   private _cache: {
@@ -32,10 +34,12 @@ export class BookingSystemService {
   private _responseStatusSubj: Subject<ResponseStatus>;
   private _credentialsSubj: Subject<Credentials[]>;
   private _updateTimerObs: Observable<number>;
+  private _currentCredentials:Credentials;
 
 
   constructor(
     private _http: Http,
+    public _localStorageService: LocalStorageService
   ) {
     this._cache = {
       meetingRooms: undefined,
@@ -56,7 +60,7 @@ export class BookingSystemService {
 
   private _fetchData(): void {
     console.log('BookingSystemService#_fetchData');
-
+      this._currentCredentials = (this._localStorageService.get<Credentials>(this._localStorageKey) || undefined);
     this._http
       .get(`${this._apiUrl}/rooms`)
       .subscribe(
@@ -101,11 +105,21 @@ export class BookingSystemService {
     validateData(exchangeserver: string, username: string, password: string): boolean {
         for (let i of this.getCredentialsResponse.data) {
             if ((i.exchangeserver === exchangeserver) && (i.username === username) && (i.password === password)) {
+                this._currentCredentials=i;
                 return true;
             }
         }
         return false;
     }
+
+    currentCrenentialsFilled(): boolean {
+      if(this._currentCredentials === undefined){
+          return false;
+      }
+      else{
+          return true;
+      }
+  }
   private _setRooms(meetingRooms: MeetingRoom[]): void {
     console.log('BookingSystemService#setRooms', meetingRooms);
 
@@ -127,6 +141,7 @@ export class BookingSystemService {
   }
     login(exchangeserver: string, username: string, password: string) {
         if (this.validateData(exchangeserver, username, password)) {
+            this._localStorageService.set(this._localStorageKey, this._currentCredentials);
             return true;
         }
         return false;

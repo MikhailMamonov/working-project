@@ -31,6 +31,8 @@ import {SettingsPageComponent} from './components/settings/settings-page.compone
 import {SettingsInfoComponent} from './components/settings-info/settings-info.component';
 import {InMemoryCredentialsService} from './mock/in-memory-credentials.service';
 import {HttpClientModule} from "@angular/common/http";
+import {AlertService} from "./services/alert.service";
+import {LocalStorageModule} from "angular-2-local-storage";
 @NgModule({
   imports: [
     BrowserModule,
@@ -39,10 +41,13 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(InMemoryMeetingRoomsService),
-    InMemoryWebApiModule.forRoot(InMemoryCredentialsService),
     BrowserAnimationsModule,
     MdCoreModule,
     MdProgressSpinnerModule,
+    LocalStorageModule.withConfig({
+      prefix: 'TodoList',
+      storageType: 'localStorage',
+    }),
     MdDialogModule,
       MdInputModule,
       MdButtonModule,
@@ -71,6 +76,7 @@ import {HttpClientModule} from "@angular/common/http";
 
   providers: [
     BookingSystemService,
+      AlertService
 
   ],
 

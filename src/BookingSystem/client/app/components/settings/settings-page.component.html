@@ -2,34 +2,40 @@
     <md-toolbar>
                 Settings
     </md-toolbar>
-<br>
-    <br>
-    <br>
-    <form class="settings-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div *ngIf="f.form.invalid && (f.form.dirty || f.form.touched)"
-             class="alert alert-danger">
-
-            <div *ngIf="name.errors.required">
-                Name is required.
-            </div>
+    <!--<br *ngIf="!(f.submitted && isInvalid()) ">-->
+    <!--<ng-container *ngIf="tableVisible(); else addEvent">-->
+    <div class="alert alert-danger" *ngIf="f.submitted && isInvalid() ">
+        <p align="center">Exchange server, Username or password is incorrect.</p>
+    </div>
+    <br *ngIf="!(f.submitted && isInvalid()) ">
+    <md-chip-list *ngIf="currentCrenentialsFilled()">
+        <md-chip  selected="true" class="online">Online</md-chip>
+    </md-chip-list>
+    <br *ngIf="!(f.submitted && isInvalid()) ">
+    <form class="settings-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm"   novalidate>
         <table class="settings-table" cellspacing="0">
             <tr>
                 <td>
-                    <div class="form-group" >
+                    <div class="form-group">
                     <md-input-container class="container-address">
                     <input mdInput placeholder="Exchange server" class="form-control" name="exchangeserver" [(ngModel)]="model.exchangeserver" #username="ngModel" required/>
-                    <div *ngIf="f.submitted && !username.valid" class="help-block"> Exchange server is required</div>
                     </md-input-container>
                     </div>
                 </td>
             </tr>
             <tr>
             <td>
-                <div class="form-group" >
+                <div class="form-group">
                     <md-input-container class="container-login">
                         <input mdInput placeholder="Login" name="username" [(ngModel)]="model.username" #username="ngModel" required>
-                        <div *ngIf="f.submitted && !password.valid" class="help-block">Login is required</div>
                     </md-input-container>
+                    <!--<div *ngIf="f.submitted && username.invalid"-->
+                         <!--class="alert alert-danger">-->
+
+                        <!--<div *ngIf="f.submitted && username.errors.required">-->
+                            <!--UserName is required.-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </td>
             </tr>
@@ -38,20 +44,30 @@
                 <div class="form-group" >
                 <md-input-container class="container-password">
                 <input mdInput type="password" class="pswd" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password">
-                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                 </md-input-container>
                 </div>
             </td>
         </tr></table>
 
-
+        <!--<br *ngIf="!(f.submitted && isInvalid()) ">-->
+        <br *ngIf="!(f.submitted && isInvalid()) ">
+        <br *ngIf="!(f.submitted && isInvalid()) ">
+        <br *ngIf="!(f.submitted && isInvalid()) ">
+        <div class="row">
         <div class="form-group col-buttons">
         <button md-raised-button class="btn-save">Save</button>
-        <button md-raised-button class="btn-add">Add room</button>
+        <button md-raised-button class="btn-add" (click)="addEvent()">Add room</button>
         <!--<bs-settings-buttons [roomName]="room?.name"></bs-settings-buttons>-->
     </div>
-
+        </div>
     </form>
+    <!--</ng-container>-->
+
+    <!--<ng-template #addEvent>-->
+        <!--<ng-container>-->
+        <!--<p class="text-uppercase mat-display-3 mb-0">Available</p>-->
+        <!--</ng-container>-->
+    <!--</ng-template>-->
 </div>
 
 

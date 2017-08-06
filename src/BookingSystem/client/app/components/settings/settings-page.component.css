@@ -5,6 +5,7 @@
 
 .settings-form{
     margin-left: 50px;
+    height: 420px;
 }
 
 .settings-table{
@@ -12,15 +13,27 @@
 }
 
 .buttons-container{
-    margin-top: 90px;
+    margin-bottom: 10px;
 }
 
 .pswd{
     font:small-caption;font-size:16px;
 }
 .col-buttons{
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top:20px;
+    margin-left: 140px;
+}
+
+.mat-chip.mat-chip-selected:not(.mat-basic-chip).mat-primary {
+    background-color: green;
+    color: white;
+    /*margin-top: 10px;*/
+    margin-left: 320px;
+    visibility: visible;
+}
+
+.online{
+    color: green;
 }
 
 .btn-save{

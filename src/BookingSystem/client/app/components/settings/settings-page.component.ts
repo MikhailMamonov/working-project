@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -23,7 +23,8 @@ import {AlertService} from '../../services/alert.service';
 export class SettingsPageComponent implements OnInit {
 
     model: any = {};
-    loading = false;
+    invalid = false;
+    _tableVisible=true;
     returnUrl: string;
 
     constructor(
@@ -32,6 +33,12 @@ export class SettingsPageComponent implements OnInit {
         private router: Router,
         private alertService: AlertService,
     ) { }
+
+    @HostListener('window:beforeunload')
+    doSomething() {
+        this._bookingSystemService._localStorageService.remove('currentUser');
+    }
+
     ngOnInit() {
         this._bookingSystemService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -39,13 +46,30 @@ export class SettingsPageComponent implements OnInit {
 
 
     login(event: any) { // without type info
-        this.loading = true;
         let redirect = '/info';
         if (this._bookingSystemService.login(this.model.exchangeserver, this.model.username, this.model.password)) {
+            this.invalid = false;
                     this.router.navigate([redirect]);
                 }
-                    this.alertService.error('Exchange server, Username or password is incorrect');
-                    this.loading = false;
+                else {
+            this.invalid = true;
+        }
                 }
+
+    isInvalid() : boolean {
+      return this.invalid ;
+    }
+
+    // tableVisible(): boolean{
+    //     return this._tableVisible;
+    // }
+
+    addEvent(){
+        this._tableVisible = false;
+    }
+    currentCrenentialsFilled(): boolean {
+        return this._bookingSystemService.currentCrenentialsFilled();
+    }
+
     }
 
