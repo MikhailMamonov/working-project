@@ -13,6 +13,7 @@ import {GetCredentialsResponse} from '../types/get-credentials-response';
 import {forEach} from "@angular/router/src/utils/collection";
 import {validate} from "codelyzer/walkerFactory/walkerFn";
 import {LocalStorageService} from "angular-2-local-storage";
+import {InMemoryMeetingRoomsService} from "../mock/in-memory-meeting-rooms.service";
 
 
 @Injectable()
@@ -160,4 +161,27 @@ export class BookingSystemService {
   getResponseStatus(): Observable<ResponseStatus> {
     return this._responseStatusSubj.asObservable();
   }
+    createMeetingRoom(room: MeetingRoom): void{
+        this._cache.meetingRooms.push(room);
+        console.log(room.id);
+        this._http
+            .put(`${this._apiUrl}/rooms`, this._cache.meetingRooms).subscribe(
+            next => {
+                console.log('next', next);
+                console.log('next.json', next.json());
+                this._setResponseStatus(new ResponseStatus(next.status, next.statusText));
+                const getRoomsResponse = next.json() as GetRoomsResponse;
+                this._setRooms(getRoomsResponse.data);
+            },
+            (error: Response) => {
+                console.log('error', error);
+
+                this._setResponseStatus(new ResponseStatus(error.status, error.statusText));
+            },
+
+            () => {
+                console.log('complete');
+            }
+        );
+    }
 }

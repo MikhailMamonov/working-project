@@ -2,7 +2,7 @@
 
 import * as moment from 'moment';
 
-export const MOCK_MEETING_ROOMS = [
+export var MOCK_MEETING_ROOMS = [
   // Occupied, no next meeting:
   {
     id: 1, name: 'Room #1 -- Foo', meetings: [

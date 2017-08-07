@@ -1,9 +1,13 @@
 <div class="container-fluid settings p-0 h-100 ">
-    <md-toolbar>
+    <md-toolbar *ngIf="tableVisible(); else addEventToolbar">
                 Settings
     </md-toolbar>
+    <ng-template #addEventToolbar>
+        <md-toolbar>Add Room</md-toolbar>
+        <br>
+    </ng-template>
     <!--<br *ngIf="!(f.submitted && isInvalid()) ">-->
-    <!--<ng-container *ngIf="tableVisible(); else addEvent">-->
+    <ng-container *ngIf="tableVisible(); else addEvent">
     <div class="alert alert-danger" *ngIf="f.submitted && isInvalid() ">
         <p align="center">Exchange server, Username or password is incorrect.</p>
     </div>
@@ -55,19 +59,82 @@
         <br *ngIf="!(f.submitted && isInvalid()) ">
         <div class="row">
         <div class="form-group col-buttons">
-        <button md-raised-button class="btn-save">Save</button>
-        <button md-raised-button class="btn-add" (click)="addEvent()">Add room</button>
+        <button md-raised-button class="btn-save" type="submit">Save</button>
+        <button (click)="addRoomClick()" md-raised-button class="btn-add" type="button">Add room</button>
         <!--<bs-settings-buttons [roomName]="room?.name"></bs-settings-buttons>-->
     </div>
         </div>
     </form>
-    <!--</ng-container>-->
+    </ng-container>
 
-    <!--<ng-template #addEvent>-->
-        <!--<ng-container>-->
-        <!--<p class="text-uppercase mat-display-3 mb-0">Available</p>-->
-        <!--</ng-container>-->
-    <!--</ng-template>-->
+    <ng-template #addEvent>
+        <ng-container>
+
+            <form class="settings-form" name="form" (ngSubmit)="addF.form.valid && onSubmitAddForm()" #addF="ngForm"   novalidate>
+                <div class="form-group">
+                    <md-input-container class="container-address">
+                        <input mdInput placeholder="Room Name" class="form-control" name="roomName" [(ngModel)]="model.roomName" #roomName="ngModel" />
+                    </md-input-container>
+                </div>
+                <!--<table class="settings-table" cellspacing="0">-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div class="form-group">-->
+                                <!--<md-input-container class="container-address">-->
+                                    <!--<input mdInput placeholder="Producer" class="form-control" name="producer" [(ngModel)]="model.producer" #producer="ngModel" />-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div class="form-group">-->
+                                <!--<md-input-container class="container-login">-->
+                                    <!--<input mdInput placeholder="Subject" name="subject" [(ngModel)]="model.subject" #subject="ngModel" required>-->
+                                <!--</md-input-container>-->
+                                <!--&lt;!&ndash;<div *ngIf="f.submitted && username.invalid"&ndash;&gt;-->
+                                <!--&lt;!&ndash;class="alert alert-danger">&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<div *ngIf="f.submitted && username.errors.required">&ndash;&gt;-->
+                                <!--&lt;!&ndash;UserName is required.&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div class="form-group" >-->
+                                <!--<md-input-container class="container-from">-->
+                                    <!--<input mdInput type="password" class="from" name="from" [(ngModel)]="model.from" #from="ngModel" required placeholder="From">-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<div class="form-group" >-->
+                                <!--<md-input-container class="container-to">-->
+                                    <!--<input mdInput type="password" class="to" name="to" [(ngModel)]="model.To" #to="ngModel" required placeholder="To">-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <!--<br *ngIf="!(f.submitted && isInvalid()) ">-->
+                <br *ngIf="!(addF.submitted && isInvalid()) ">
+                <br *ngIf="!(addF.submitted && isInvalid()) ">
+                <br *ngIf="!(addF.submitted && isInvalid()) ">
+                <div class="row">
+                    <div class="form-group col-buttons">
+                        <button md-raised-button class="btn-save" type="submit">Save</button>
+                        <button (click)="addRoomClose()" md-raised-button class="btn-add" type="button">Cancel</button>
+                        <!--<bs-settings-buttons [roomName]="room?.name"></bs-settings-buttons>-->
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </ng-template>
 </div>
 
 

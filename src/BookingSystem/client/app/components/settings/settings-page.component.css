@@ -76,6 +76,30 @@
     width: 100%;
 }
 
+.container-from{
+    /*margin-bottom: 250px;*/
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    margin-left: 30px;
+    width: 100px;
+}
+
+
+.container-to{
+    /*margin-bottom: 250px;*/
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    margin-left: 110px;
+    width: 100px;
+}
+
+.container-password{
+    /*margin-bottom: 150px;*/
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    width: 100%;
+}
+
 .container-password{
     /*margin-bottom: 150px;*/
     /*margin-left: 50px;*/

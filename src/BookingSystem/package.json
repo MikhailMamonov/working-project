@@ -32,7 +32,7 @@
     "moment": "^2.18.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.16",
-    "angular-2-local-storage":"^1.0.1"
+    "angular-2-local-storage": "^1.0.1"
   },
   "devDependencies": {
     "@angular/cli": "1.2.1",
@@ -54,7 +54,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "~2.3.3",
-    "angular-2-local-storage":"^1.0.1"
+    "typescript": "~2.3.3"
   }
 }

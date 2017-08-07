@@ -9,6 +9,10 @@ export class MeetingRoom {
 
   meetings?: Meeting[];
 
+  constructor(private _id: string, private _name: string){
+    this.id = _id;
+    this.name = _name;
+  }
   static isOccupiedNow(room: MeetingRoom): boolean {
     if (MeetingRoom.hasMeetings(room)) {
       if (MeetingRoom.currentMeeting(room)) {
