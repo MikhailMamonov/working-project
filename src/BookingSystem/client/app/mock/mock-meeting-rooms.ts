@@ -1,6 +1,7 @@
 // NOTE: We are using ISO 8601 for both times and durations.
 
 import * as moment from 'moment';
+import construct = Reflect.construct;
 
 export var MOCK_MEETING_ROOMS = [
   // Occupied, no next meeting:

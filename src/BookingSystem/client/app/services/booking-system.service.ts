@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -14,6 +14,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 import {validate} from "codelyzer/walkerFactory/walkerFn";
 import {LocalStorageService} from "angular-2-local-storage";
 import {InMemoryMeetingRoomsService} from "../mock/in-memory-meeting-rooms.service";
+import {Headers} from '@angular/http';
 
 
 @Injectable()
@@ -23,7 +24,7 @@ export class BookingSystemService {
   readonly initialUpdateDelay = 1000 * 2; // 2s // TODO: [1;0] Move to config
   readonly updatePeriod = 1000 * 10; // 10s // TODO: [1;0] Move to config
     private readonly _localStorageKey = 'currentUser';
-    private getCredentialsResponse:any;
+    private getCredentialsResponse: any;
     private isLoggedIn = false;
   private _cache: {
     meetingRooms: MeetingRoom[],
@@ -35,12 +36,12 @@ export class BookingSystemService {
   private _responseStatusSubj: Subject<ResponseStatus>;
   private _credentialsSubj: Subject<Credentials[]>;
   private _updateTimerObs: Observable<number>;
-  private _currentCredentials:Credentials;
+  private _currentCredentials: Credentials;
 
 
   constructor(
     private _http: Http,
-    public _localStorageService: LocalStorageService
+    public _localStorageService: LocalStorageService,
   ) {
     this._cache = {
       meetingRooms: undefined,
@@ -125,6 +126,7 @@ export class BookingSystemService {
     console.log('BookingSystemService#setRooms', meetingRooms);
 
     this._cache.meetingRooms = meetingRooms;
+    console.log(this._cache.meetingRooms);
     this._meetingRoomsSubj.next(this._cache.meetingRooms);
   }
   private _setCredentials(credentials: Credentials[]): void {
@@ -161,11 +163,13 @@ export class BookingSystemService {
   getResponseStatus(): Observable<ResponseStatus> {
     return this._responseStatusSubj.asObservable();
   }
-    createMeetingRoom(room: MeetingRoom): void{
+    createMeetingRoom(room: any): void{
+        console.log(this._cache.meetingRooms);
         this._cache.meetingRooms.push(room);
-        console.log(room.id);
+        console.log(this._cache.meetingRooms);
+        let headers = new Headers({ 'Authorization': 'Bearer ' });
         this._http
-            .put(`${this._apiUrl}/rooms`, this._cache.meetingRooms).subscribe(
+            .put(`${this._apiUrl}/rooms/`, this._cache.meetingRooms, { headers: headers }).subscribe(
             next => {
                 console.log('next', next);
                 console.log('next.json', next.json());

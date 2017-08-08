@@ -7,8 +7,6 @@ import { MeetingRoom } from '../../types/meeting-room';
 import { BookingSystemService } from '../../services/booking-system.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../services/alert.service';
-import {Meeting} from "../../types/meeting";
-
 
 
 
@@ -70,12 +68,10 @@ export class SettingsPageComponent implements OnInit {
     }
 
     private addRoomClick(): void{
-        console.log("dorova meen");
         this._tableVisible = false;
     }
 
     private addRoomClose(): void{
-        console.log("poka meen");
         this._tableVisible = true;
     }
     onSubmitAddForm(): void{
@@ -83,7 +79,7 @@ export class SettingsPageComponent implements OnInit {
     }
 
     addRoom(): void {
-        let room = new MeetingRoom('15', this.model.roomName);
+        let room = {id: 8, name: this.model.roomName};
         console.log(room.id);
         this._bookingSystemService.createMeetingRoom(room);
         this._tableVisible = true;
